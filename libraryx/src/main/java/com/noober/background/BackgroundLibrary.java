@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.LayoutInflaterCompat;
 
+import com.noober.background.inflate.InflateObserver;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -18,10 +20,20 @@ import java.lang.reflect.Method;
 /**
  * minSdkVersion最小为14，建议minSdkVersion >= 16
  * 如果minSdkVersion < 16:bl_gradient_angle, bl_gradient_startColor, bl_gradient_centerColor, bl_gradient_endColor会失效，其他正常
- *
+ * <p>
  * Created by xiaoqi on 2018/9/9
  */
 public class BackgroundLibrary {
+    private static final InflateObserver INFLATE_OBSERVER = new EmptyInflateObserver();
+    private static InflateObserver sInflateObserver;
+
+    public static InflateObserver getInflateObserver() {
+        return sInflateObserver != null ? sInflateObserver : INFLATE_OBSERVER;
+    }
+
+    public static void setInflateObserver(InflateObserver mInflateObserver) {
+        BackgroundLibrary.sInflateObserver = mInflateObserver;
+    }
 
     public static LayoutInflater inject(Context context) {
         LayoutInflater inflater;
@@ -100,6 +112,17 @@ public class BackgroundLibrary {
             e.printStackTrace();
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * 空实现
+     */
+    private static class EmptyInflateObserver implements InflateObserver {
+
+        @Override
+        public <T extends View> T onViewInflated(Context context, String name, AttributeSet attrs) {
+            return null;
         }
     }
 }

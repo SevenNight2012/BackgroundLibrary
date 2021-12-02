@@ -2,7 +2,10 @@ apply plugin: 'com.android.library'
 //apply plugin: 'bintray-release'
 apply plugin: 'com.github.dcendents.android-maven'
 
-group='com.github.JavaNoober'
+group = 'com.xxc.dev'
+ext {
+    moduleName = "background"
+}
 
 android {
     compileSdkVersion 29
@@ -11,7 +14,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'background-proguard-rules.pro'
     }
@@ -51,3 +54,4 @@ dependencies {
 repositories {
     mavenCentral()
 }
+apply from: "${file(System.getenv("MY_LIBRARY_UPLOAD_SCRIPT"))}"

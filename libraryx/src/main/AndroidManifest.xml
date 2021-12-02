@@ -3,10 +3,6 @@
 
 
     <application>
-        <provider
-            android:name="com.noober.background.BackgroundContentProvider"
-            android:authorities="${applicationId}.backgroundLibrary"
-            android:exported="false"
-            android:multiprocess="true" />
+
     </application>
 </manifest>
