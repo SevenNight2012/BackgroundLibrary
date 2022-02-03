@@ -55,9 +55,12 @@ import com.noober.background.view.BLSpinner;
 import com.noober.background.view.BLTextView;
 import com.noober.background.view.BLToggleButton;
 
+/**
+ * 自定义ViewInflater
+ */
 public class BackgroundViewInflater extends AppCompatViewInflater {
 
-    private <T extends View> T createBackgroundView(Context context, String name, AttributeSet attrs, View blView) {
+    protected  <T extends View> T createBackgroundView(Context context, String name, AttributeSet attrs, View blView) {
         View view = BackgroundLibrary.getInflateObserver().onViewInflated(context, name, attrs);
         return (T) (null == view ? blView : view);
     }
