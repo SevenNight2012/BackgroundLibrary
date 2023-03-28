@@ -45,6 +45,7 @@ import com.noober.background.view.BLImageButton;
 import com.noober.background.view.BLImageView;
 import com.noober.background.view.BLLinearLayout;
 import com.noober.background.view.BLListView;
+import com.noober.background.view.BLProgressBar;
 import com.noober.background.view.BLRadioButton;
 import com.noober.background.view.BLRadioGroup;
 import com.noober.background.view.BLRatingBar;
@@ -174,6 +175,8 @@ public class BackgroundViewInflater extends AppCompatViewInflater {
             return new BLRelativeLayout(context, attrs);
         } else if ("ScrollView".equals(name)) {
             return new BLScrollView(context, attrs);
+        } else if ("ProgressBar".equals(name)) {
+            return new BLProgressBar(context, attrs);
         }
         return super.createView(context, name, attrs);
     }
